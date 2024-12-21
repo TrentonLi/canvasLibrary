@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import {Controls, handleDragOver, handleDragStart, handleDrop,
+import {
+  clear, Controls, handleDragOver, handleDragStart, handleDrop,
   init
 } from "./index.ts";
 import {onMounted} from "vue";
@@ -20,6 +21,7 @@ onMounted(() =>{
         <div class="itemList">
           <a-tooltip v-for="ite in Controls" :content="ite.intro" background-color="#3491FA">
             <a-avatar
+                @click="clear(ite.intro)"
                 @dragstart="handleDragStart($event, ite.key)"
                 :draggable="ite.key!=='Clear'"
                 class="cursor item"

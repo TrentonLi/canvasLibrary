@@ -7,6 +7,8 @@ const init = () => {
     _canvas.value = new fabric.Canvas('fabric_canvas', {
         width: CanvasWidth,
         height: 610,
+        selection: true,
+        allowTouchScrolling: true // 允许触摸滚动
     })
 }
 const Controls = [
@@ -63,6 +65,9 @@ const handleDrop = (event: DragEvent) => {
 const handleDragOver = (event: DragEvent) => {
     event.preventDefault();
 };
+const clear = (intro: string) => {
+    if (intro === 'Clear') _canvas.value.clear()
+}
 const dragAdd = (key: string, X: number, Y: number) => {
     switch (key) {
         case 'Image':
@@ -92,11 +97,12 @@ const dragAdd = (key: string, X: number, Y: number) => {
             }
             return points;
         }
+
             // 创建五角星对象
             const starPoints = createStarPoints(0, 0, 5, 50, 25);
             const star = new fabric.Polygon(starPoints, {
-                left: 200,
-                top: 200,
+                left: X,
+                top: Y,
                 fill: 'yellow',
                 stroke: 'black',
                 strokeWidth: 1,
@@ -108,8 +114,8 @@ const dragAdd = (key: string, X: number, Y: number) => {
         case 'Circle':
             const circle = new fabric.Circle({
                 radius: 30, // 圆的半径
-                top: 20, // 距离容器顶部 20px
-                left: 20, // 距离容器左侧 20px
+                top: Y, // 距离容器顶部 20px
+                left: X, // 距离容器左侧 20px
                 fill: 'pink' // 填充 粉色
             })
             _canvas.value.add(circle)
@@ -119,5 +125,5 @@ const dragAdd = (key: string, X: number, Y: number) => {
 
 export {
     Controls, handleDrop, handleDragOver, handleDragStart,
-    init, dragAdd
+    init, dragAdd, clear
 }

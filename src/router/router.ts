@@ -11,6 +11,7 @@ export const publicRoutes: Array<RouteRecordRaw> = [
     {
         path: '/home',
         name: 'homeIndex',
+        redirect:'/home/fabric',
         component: () => import('../homePage/index.vue'),
         children:[
             {

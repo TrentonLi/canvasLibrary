@@ -5,6 +5,7 @@ import ArcoVue from '@arco-design/web-vue';
 import ArcoVueIcon from '@arco-design/web-vue/es/icon';
 import '@arco-design/web-vue/dist/arco.css';
 import {setupRouter} from "./router/router.ts";
+import './tailwind.css'
 
 const setupApp = async () => {
     const app = createApp(App);
